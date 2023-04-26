@@ -65,14 +65,13 @@ const MONTHS = [
   
   // Only edit below this comment
   
+  //assigned the correct values to variables
   const createHtml = (athlete) => {
     const firstName = athlete.firstName
     const surname = athlete.surname
     const id = athlete.id
     let races = athlete.races
-    
-    console.log(races)
-  
+    // insted of using fragment I'll target the body directly
     const body = document.body
     const title = document.createElement('h2');
     title.textContent = id;
@@ -80,6 +79,8 @@ const MONTHS = [
 
     let dateAsArray = []
     let timeAsArray = []
+
+    //used for loop to push new values into timeAsArray and dateAsarray
     for(let i = 0; i < athlete.races.length; i ++) {
         let newDate = new Date(athlete.races[i].date)
         timeAsArray.push(athlete.races[i].time)
@@ -87,7 +88,8 @@ const MONTHS = [
     }
 
     let latestDate = ''
-
+    //used for loop to get the values of latestDate. Used the end of the array as reference.
+    //userd a pointer to compare different values to reference
     for(let i = 0; i < dateAsArray.length; i ++) {
       if(dateAsArray[dateAsArray.length -1].getTime() < dateAsArray[i].getTime()) {
         latestDate = dateAsArray[i + 1]
@@ -96,23 +98,28 @@ const MONTHS = [
       }
     }
 
+    //Got the detail of the latest date into variables
     const day = latestDate.getDate()
     const month = latestDate.toLocaleString('default', { month: 'short' })
     const year = latestDate.getFullYear()
     const formattedDate = month < 10 ? `${day} 0${month} ${year}` : `${day} ${month} ${year}`
 
+    //Used flat array as to remove one level of nesting from timeAsArray
     const flatArray = timeAsArray.flat()
     const totalRaces = flatArray.length
     let total = 0;
+    //used for loop to etermine the total number of races
     for(let i = 0; i < flatArray.length; i ++) {
       total += flatArray[i]
     }
     
     const totalHours = total / 60
     const hours = Math.floor(totalHours);
+    //Calculation for minutes remaining
     const minutes = total - (hours * 60);
   
     const list = document.createElement('dl')
+    //Used append to add values to HTML
     document.querySelector(`[data-athlete=${id}]`).append(list)
 
     list.innerHTML = /* html */ `
