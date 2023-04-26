@@ -80,7 +80,7 @@ const MONTHS = [
     let dateAsArray = []
     let timeAsArray = []
 
-    //used for loop to push new values into timeAsArray and dateAsarray
+    //used for loop to push values into timeAsArray and dateAsarray
     for(let i = 0; i < athlete.races.length; i ++) {
         let newDate = new Date(athlete.races[i].date)
         timeAsArray.push(athlete.races[i].time)
@@ -89,7 +89,7 @@ const MONTHS = [
 
     let latestDate = ''
     //used for loop to get the values of latestDate. Used the end of the array as reference.
-    //userd a pointer to compare different values to reference
+    //used a pointer to compare different values to reference
     for(let i = 0; i < dateAsArray.length; i ++) {
       if(dateAsArray[dateAsArray.length -1].getTime() < dateAsArray[i].getTime()) {
         latestDate = dateAsArray[i + 1]
@@ -124,7 +124,7 @@ const MONTHS = [
 
     list.innerHTML = /* html */ `
       <dt>Athlete</dt>
-      <dd>${firstName, surname}</dd>
+      <dd>${firstName} ${surname}</dd>
   
       <dt>Total Races</dt>
       <dd>${totalRaces}</dd>
